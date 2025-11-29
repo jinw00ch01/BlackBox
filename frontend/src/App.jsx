@@ -8,25 +8,30 @@ function App() {
 
   const textareaRef = useRef(null);
 
-  const sendMessage = async () => {
-    if (!input.trim()) return;
+const sendMessage = async () => {
+  if (!input.trim()) return;
 
-    const newMessage = { role: "user", content: input };
-    setMessages((prev) => [...prev, newMessage]);
-    setInput("");
-    setLoading(true);
+  const newMessage = { role: "user", content: input };
+  setMessages((prev) => [...prev, newMessage]);
+  setInput("");
+  setLoading(true);
 
-    // 테스트용 고정 응답
-    setTimeout(() => {
-      setMessages((prev) => [
-        ...prev,
-        { role: "assistant", content: "테스트" },
-      ]);
-      setLoading(false);
-    }, 500);
-  };
+  const res = await fetch("http://localhost:8000/chat", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ message: newMessage.content }),
+  });
 
-  // 자동 높이 증가
+  const data = await res.json();
+
+  setMessages((prev) => [
+    ...prev,
+    { role: "assistant", content: data.answer }
+  ]);
+
+  setLoading(false);
+};
+
   useEffect(() => {
     if (textareaRef.current) {
       textareaRef.current.style.height = "auto";
@@ -37,16 +42,12 @@ function App() {
   return (
     <div className="w-full min-h-screen bg-[#1c1d20] flex justify-center p-4 text-gray-200">
       <div className="w-full max-w-3xl bg-[#1f2024] rounded-xl shadow-xl p-6 flex flex-col border border-gray-700">
-
-        {/* Header */}
         <h1 className="text-center text-xl font-semibold mb-5 text-gray-100 flex items-center gap-2 justify-center">
           <div className="w-3 h-3 rounded-sm bg-gray-400"></div>
           BlackBox RoadLaw Assistant
         </h1>
 
-        {/* Message Area */}
         <div className="flex-1 overflow-y-auto space-y-4 p-4 bg-[#111214] rounded-lg border border-gray-700 flex flex-col">
-
           {messages.map((msg, index) => (
             <div
               key={index}
@@ -72,10 +73,7 @@ function App() {
           )}
         </div>
 
-        {/* Input Box */}
         <div className="flex mt-4 gap-3 items-end">
-
-          {/* textarea auto-resize */}
           <textarea
             ref={textareaRef}
             value={input}
@@ -100,7 +98,6 @@ function App() {
             <IoSend size={20} />
           </button>
         </div>
-
       </div>
     </div>
   );

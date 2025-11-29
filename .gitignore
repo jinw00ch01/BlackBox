@@ -1,0 +1,55 @@
+# ========================================
+#  Python / FastAPI
+# ========================================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+*.log
+
+# Virtual environment (Windows & Linux & Mac)
+venv/
+env/
+.venv/
+
+# Python Dotenv (중요!)
+.env
+*.env
+
+# Pydantic cache
+*.mypy_cache/
+.pytest_cache/
+
+# ========================================
+#  Node / React Native / Frontend
+# ========================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+dist/
+build/
+.cache/
+.expo/
+
+# React Native Android/iOS
+android/
+ios/
+
+# ========================================
+#  OS / Editor settings
+# ========================================
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# ========================================
+#  AWS / Secret keys
+# ========================================
+*.pem
+*.key
+*.aws/
