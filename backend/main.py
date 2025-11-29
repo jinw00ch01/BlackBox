@@ -86,7 +86,7 @@ def main():
     # Set Knowledge Base ID for retrieve tool
     # The retrieve tool uses KNOWLEDGE_BASE_ID environment variable as default
     # or can accept knowledgeBaseId parameter directly when called
-    kb_id = os.environ.get("KNOWLEDGE_BASE_ID", "A1ZCXMFMCB")
+    kb_id = os.environ.get("KNOWLEDGE_BASE_ID", "YOUR KB ID")
     os.environ["KNOWLEDGE_BASE_ID"] = kb_id
     
     paper_agent = Agent(
