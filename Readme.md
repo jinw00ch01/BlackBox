@@ -76,3 +76,23 @@ Response Example
   "answer": "모델 답변",
   "contexts": ["검색된 KB 문서 내용 1", "문서 2"]
 }
+
+8. Run Frontend (React + Vite)
+
+1) Move into frontend folder
+cd frontend
+
+2) Install Node.js 18+
+https://nodejs.org/
+
+3) Install project dependencies
+npm install
+
+4) Start Vite dev server
+npm run dev
+
+5) Access the frontend
+http://localhost:5173
+
+Frontend communicates with backend through:
+POST http://localhost:8000/chat
