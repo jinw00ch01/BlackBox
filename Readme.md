@@ -45,7 +45,7 @@ AWS_REGION=us-east-1
 KB_ID=xxxx
 
 
-자기꺼입력
+본인 ACCESS KEY 입력
 
 6. Run Backend Server
 uvicorn main2:app --reload
